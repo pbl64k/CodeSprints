@@ -1,0 +1,176 @@
+These are my submissions for CodeSprint-Systems (Feb 2012).
+
+I solved two out of five problems, scored a total of 88 points and was ranked
+30th out of 380+ participants.
+
+The contest started with just 3 of the problems published. The other two only
+became available in about two hours, and the duration of the contest was
+extended from the initially planned four hours to a total of six.
+
+BREAKING EGGS
+
+This looked like yet another Euler-style DP/combinatorics problem I'm still a
+little sick of, so I decided to leave it for later, "if I have time for it".
+I never had.
+
+STOCK TRADING
+
+This is a very easy one. I started off with a standard idea of going over the
+data in one pass, accumulating some intermediate data structure (the reasoning
+being that a solution for n somehow depends on a solution for n-1 plus some
+extra information), but then I realized this is as simple as finding all p{i}
+such that for all j > i, p{j} < p{i} and partitioning the input accordingly.
+So:
+
+[1, 3, 2, 4, 1, 2, 1, 1]
+
+becomes:
+
+[[1, 3, 2, 4], [1, 2], [1], [1]]
+
+Now we should also keep the track of the local maximum (the selling price,
+that is):
+
+[[(1, 4), (3, 4), (2, 4), (4, 4)], [(1, 2), (2, 2)], [(1, 1)], [(1, 1)]
+
+The rest of the transformation yielding the solution is trivial:
+
+[[3, 1, 2, 0], [1, 0], [0], [0]] -> [6, 1, 0, 0] -> 7
+
+I think I spent more time writing a mildly elegant explode that implementing
+the solution as such. In any case, this was over in something like half an
+hour, I believe.
+
+THUMBTACK DATABASE RECOVERY
+
+I continued with this one. I initially ignored everything that had to do with
+dealers, concentrating on recovering the structure. My mistake was that I
+approached this by attempting the obvious then looking at what I was still
+missing and trying to figure out the next step. While this made reaching the
+solution easier, it also led to a pretty bad accumulation of cruft.
+
+In any case, soon I reached a facepalm moment, as I realized the problem was a
+bit deeper than I assumed, and just at that minute the additional problems
+were published.
+
+(cont. below)
+
+STRIPE VERSIONS
+
+This looked like yet another easy problem, so I decided to deal with it
+quickly before coming back to TDR. It was easy, indeed, even considering the
+fact that commits may have multiple parents (which wasn't clearly articulated
+in the problem statement - in fact, the input format made it obvious that
+wasn't the case).
+
+The algorithm should be fairly obvious from the source: go over the input,
+structuring what we can and collecting information about the orphan nodes,
+once we have all the nodes, process the orphans attempting to link them to
+known parents, stuff all nodes with no known unsorted parents into the final
+list, output that in reverse.
+
+That was just where the weirdness started. "Compile & Test" didn't work,
+saying the expected output was "[object Object]" rather than the JSON I
+produced. Ah, good ole ECMAScript. I scratched my head a little, but decided
+to sumbit anyway. My submission apparently failed all the test cases, so I
+went to #codesprint on IRC to inquire about this with the interviewstreet
+folks.
+
+It appears they were right in the middle of fixing this, as my submission
+quickly transformed into all tests passed, 33 points gem soon afterwards.
+Curiously, individual test cases are still marked as "Wrong Answer" even now.
+
+All in all, this probably took me about another hour or so, much of that spent
+in the support channel.
+
+STRIPE KEY VALUE
+
+I almost decided to give it a go in lieu of Thumbtack's challenge, but a few
+things put me off:
+
+1. Apparent emphasis on low-level I/O coupled with limited language selection.
+   I feel pretty comfortable juggling data structures in C++, and I know
+   enough Java to parse someone's code or implement an algo myself. I also
+   have enough experience with ISAM and KV-storage to understand what it's all
+   about, but I didn't feel confident writing performance optimized I/O code
+   or implementing the grisly details of what I normally see as much
+   higher-level APIs. That would be something interesting to learn, but not
+   under the extreme time pressure of a coding contest.
+
+2. You don't even get to write a module or anything like that here. You must
+   implement a single function, you can't use #include to bring in your fave
+   data structures etc. etc. That's just gross.
+
+3. As if that weren't enough, the IRC channel was full of complaints about
+   this problem from other competitors, who experienced all sorts of issues
+   getting their solutions to work in interviewstreet's environment.
+
+Oh well, back to...
+
+THUMBTACK DATABASE RECOVERY (cont.)
+
+After quite some head-scratching I figured out what seemed like the correct
+solution for rebuilding the tree structure.
+
+If you keep track of how often the locations occur in the input, you can
+determine the root node of any known hierarchy (as it's going to occur more
+often - or the problem would be unsolvable). Once I realized this, I instantly
+dismissed several other ideas I was trying at the time and got down to
+implementing this. Getting all sorts of corner cases right wasn't a small task
+what with the surrounding cruft, but I eventually reached the point where I
+could reconstruct the structure automatically in any case I could come up
+with where I would be able to reconstruct it by hand.
+
+Unfortunately, that was just the beginning. There was also a ton of routine
+work involved in:
+
+1. Keeping track of the dealers, not just the locations.
+2. Gathering sub-tree stats.
+3. Outputting the results with just the right formatting.
+
+I feel that this part of the problem was rather unfortunate, as it doesn't
+involve much thinking. I guess it does check for attention to detail and good
+skills at implementing from the reqs, but it also adds a ton of hidden fault
+points, and since the participants cannot see the errors in their submission
+output, it makes trying to fix an erroneous submission a living hell.
+
+I know for certain, as I went through just that.
+
+The vague (or absent) wording of some fine points didn't help either. A few
+things that weren't clarified in the problem statement:
+
+1. Rounding. Late in the contest the organizers added an explanation that this
+   should be float -> sprintf("%.2f"), which is loathsome to anyone who's ever
+   dealt with financial applications, as this means the output will be
+   inconsistent: avg{par} /= avg + delta
+
+2. Ordering. Specified simply as "alphabetic". Organizers insisted that this
+   is a simple char ordering, but I know that I went from 3 to 6 passed test
+   cases once I changed simple lexicographical sorts to ones using lambdas
+   with strtolower() before strcmp(). Either they're wrong, or they've been
+   quietly "fixing" the test cases in the middle of the contest.
+
+3. Uniqueness. Apperently, vendor names are unique, but it's never been stated
+   clearly in the problem text, and I spent quarter an hour implementing a
+   very ugly uniqid() kludge to cover myself against this.
+
+Unfortunately, I never got my solution to pass all 10 tests, and spent the
+last two hours of the contest alternating between trying to construct a case
+my algo wouldn't solve, and adding another bunch of hacks and kludges in hopes
+that it would fix whatever the bug was.
+
+After the contest a fellow participant, mcdigman, shared his solution with
+others in the IRC channel:
+
+https://github.com/mcdigman/Project-Euler/blob/master/addresses.pl
+
+I analyzed this, and while the overall structure is very different, the
+underlying principle is exactly the same, and this didn't help me figure out
+the fault in my solution.
+
+A fellow from Thumbtack, birken, was present in the chat as well, and claimed
+there weren't any particular tricks to the problem beyond reconstructing the
+tree.
+
+I hope interviewstreet releases the test cases for this problem eventually,
+as I'd really like to get down to the bottom of it.

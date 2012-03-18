@@ -1,0 +1,87 @@
+These are my submissions for CodeSprint 2 (Jan 2012).
+
+I scored a total of 232 points and placed 139th out of 1800+ participants
+(before Real World Problems - which I didn't bother with at all - were
+accounted for).
+
+A hearty thanks to the hosts at interviewstreet.com for the fairly awesome
+contest and a solid dose of great good nerdy fun.
+
+A few notes on some of the problems.
+
+COUNT STRINGS
+
+I tackled this one first, despite the fact that between arbitrary
+combinations of choices and repeats it appeared to be a very hard one. The
+only reason for that was that I just itched to whip out Parsec. Apart from the
+sample cases (worth 2 pts) my implementation was unable to fit in the time
+limit. I tinkered with it some on Day 2, but my changes were of cosmetic
+nature, and failed to affect the performance perceptibly. Unfortunately, I
+still have no idea how to solve this problem correctly.
+
+COIN TOSSES
+
+An easy one for an Eulerite, but it requires arbitrary-precision integers, so
+I only succeeded after I rewrote in Haskell.
+
+PICKING CARDS
+
+Attempted it in Java, but since I'm hardly fluent in it, I ran into a bunch of
+problems, then made an incorrect assumption about input, and finally decided
+to try something else for a change. Rewrote in C++ on Day 2, worked like a
+charm.
+
+SUBSEQUENCE WEIGHTING
+
+It's pretty obvious this should be done in one pass of going over the input
+data, building some intermediate data structure along the way. The devil is in
+the details, however, and my initial attempts in PHP and Haskell failed due to
+this intermediate data structure being horribly inefficient. When it comes to
+implementing custom data structures, I tend to stick to C++. That's what I did
+on Day 2, implemented a custom unbalanced binary values-in-leaves tree in C++,
+and that did the trick.
+
+PERMUTATION
+
+The only reason I tried this was because performance graphs indicated it was
+an easy one and I needed a break from Subsequence Weighting. I'm ashamed to
+admit I'm not very fond of heuristic optimization, nor am I very good at it.
+My extremely naive implementation scored a mere 7.4 points, and I didn't fancy
+pouring much more time into it.
+
+FRAUD PREVENTION
+
+Once again, the only reason I tried this was that graphs indicated it was a
+pushover. My PHP implementation suffered from a number of problems, not the
+least of which were some edge case faults remaining undetected until run-time,
+so I rewrote the same algo in Java to get compile-time checking. That didn't
+go very smoothly either, but after fixing a few obscenely stupid bugs in
+initial versions it managed to pass all the tests.
+
+DIRECT CONNECTIONS
+
+This was the second problem I tried, using pen & paper only. After spending a
+couple of hours on it and hitting a few roadblocks I left it for later. On Day
+2 I noticed that the tree I used for Subsequence Weighting suited this problem
+fairly well, too. Adapting it wasn't too much work, and it worked just fine.
+
+CRAB GRAPHS
+
+Graphs give me crabs. I still haven't recovered after my two-month long
+attempt to subdue Euler's 289. Words "BEST" and "Kirchhoff" make me pale in
+the face. I wouldn't touch this one with a ten foot pole. Well, maybe I would,
+but I'd need a few more years to regain my composure first.
+
+QUORA NEARBY
+
+This one needs a healthy dose of k-d trees, but I'd prefer Polygon if I went
+that way.
+
+POLYGON
+
+Ordinary k-d tree wouldn't cut it I believe, this one needs a range tree, the
+literature on which seems unfortunately sparse. In any case, by the time I'd
+gotten around looking at this one, I had around three more hours of active
+coding time left in my schedule, and I felt pretty exhausted, so I decided to
+call it quits.
+
