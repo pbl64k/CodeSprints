@@ -5,3 +5,31 @@ These are my submissions for CodeSprint Startups/India (Mar 11, 2012).
 I solved one problem out of four, scored a total of 100 points and was ranked
 110th out of 220+ participants.
 
+Between a nasty cold and a slight hangover from my birthday I wasn't at all
+sure I wanted to participate (skipped the Mar 10 DrChrono CodeSprint for these
+very reasons), but decided to take a look at the problems, and...
+
+PLAYING GAME
+
+This looked like yet another entry-level problem (most CodeSprints seem to
+have one as a bait), and indeed it was.
+
+The game is pretty easy to analyze, as each pile size is either winnable or
+not, and this can be easily expressed as a formula of smaller pile sizes. The
+entire position always consists of exactly two piles, so it's a matter of
+choosing the winnable pile (if there is one) at each step. Crude DP simplifies
+the analysis even more than just writing this out on paper, so reaching the
+solution took me a quarter an hour at most.
+
+The entire solution is just a few lines of code in Haskell. I attempted to
+submit a solution using a List-memoized winnable function, but that was way
+too inefficient. The analytical formula is obvious, however, so I just
+replaced winnable with that, and it worked just fine.
+
+MATRIX
+
+I toyed with this problem a bit, but it seemed like Strassen wouldn't be
+enough for N = 800 (and, indeed, the problem text hints at expected algo being
+probabilistic in nature), so I decided that would be too much for me to handle
+while sneezing my brains out every fifteen seconds.
+

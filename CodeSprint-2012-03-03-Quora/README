@@ -5,3 +5,28 @@ These are my submissions for CodeSprint Quora (Mar 3, 2012).
 I didn't solve any problems completely, scored a total of 30 points and was
 ranked 114th out of 210+ participants.
 
+This was just about the toughest sprint ever. Looks like Quora folks were
+looking for ready-made ML experts, not sure whether they've found any. :-)
+
+It looked like it from the start, too, so I wasn't at all sure I wanted to
+participate, but
+
+QUORA FEED OPTIMIZER
+
+This looked obviously related to knapsack problem, and I was just recently
+reading about that. I decided to implement a straightforward DP algo (even
+though it was obvious the moving window would neutralize much of its
+efficacy), and see where it takes me.
+
+Initial proto in PHP was pretty memory-hungry, even though it seemed otherwise
+correct, so I reimplemented it in C++. As expected, this didn't get me too
+far, as whenever an item would drop off the bottom of the window, I would have
+to recalculate the whole solution tree.
+
+I mulled over this for about an hour, but after that real-life commitments
+pulled me away from the contest.
+
+Given the significant difficulty of the problems, the contest deadline was
+extended a whole day, and after that the organizers rolled out a week-long
+"Quora Marathon", but I didn't participate in either event.
+
