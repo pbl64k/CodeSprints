@@ -5,3 +5,86 @@ These are my submissions for CodeSprint Adobe/India (Mar 18, 2012).
 I solved two problem out of five, scored a total of 260 points and was ranked
 38th out of 700+ participants.
 
+GAME
+
+Yet another trivial problem. I think this problem was the reason why Adobe
+asked to solve two to apply :-)
+
+It's obvious that p{1} = P, p{i} = p{i - 1}(1 - P) + P(1 - p{i - 1}). As long
+as you memoize the results, you'll be just fine.
+
+RACE CARS
+
+Unlike the other three problems, this seemed somewhat original, so I decided
+to try it first.
+
+Surprisingly, only six participants (including me) managed to solve it, even
+though it didn't seem particularly hard to me.
+
+The "cars" are linear functions, of course, which means several things:
+
+1. If a{1} = a{2} and b{1} = b{2}, these two functions can be treated as a
+   single entity.
+2. If a{1} = a{2} and b{1} > b{2}, the second function can be ignored, as it's
+   never going to surpass the first one.
+3. If a{1} > a{2}, there is a point x = (b{2} - b{1}) / (a{1} - a{2}), such
+   that the first function is above the second one on the right side of x, and
+   vice versa on the left side of x.
+
+From there it took little ingenuity to reach the solution. The equations are
+sorted (and filtered) as they're entered, using a map<>. Then we start from
+the one with the highest a{i}, and mark it as being the "contender" in the
+[0, +Infinity).
+
+Proceeding from there with successively lower a{j}, we try to find an
+intersection with a previously processed function that would be inside its
+"contender" range. All functions on the left are then discarded (as they're
+always below f{j}), and the function we've found is modified, so the the left
+limit of its contender range equals intersection point. f{j} is added to the
+front of the contender list (deque<> in practice, but that is unnecessary) as
+[0, intersection] contender.
+
+Once all functions are processed, we need to count the total number of them in
+the contender list.
+
+Worst-case for this algo is O(n^2), but given the constraints on the functions
+involved, it's more efficient in practice than the worst-case may suggest.
+
+I've run into some problems at submission, and my first guess was that double
+wasn't well-suited for keeping the intersection points, so I implemented very
+limited rational numbers to keep my math exact. As it happens, the problem
+lied in a simple typo in one of my conditions, which meant that the branch
+responsible for handling multiple identical functions never really worked. I
+figured this out by running some trivial test cases; thankfully, it didn't set
+me back all that much.
+
+GOING OFFICE
+
+The problem is trivial for a single query, of course. Not so for two hundred
+thousand of them. I spent several hours trying to come up with an efficient
+algorithm, but haven't made much progress.
+
+Neither did anyone else, as this problem remained the only one unsolved in
+this contest.
+
+GROUPING PEOPLE
+
+In the last hour of the contest (there was another significant time extension
+this time, as the organizers were DDoS'd, apparently, smack in the middle of
+the contest... an angry script kiddie who broke his teeth on GAME, I'd
+guess :-) I decided to try GROUPING PEOPLE. V SEQUENCE looked easier, judging
+by the submission stats, but this one looked more interesting.
+
+Unfortunately, I misread the problem statement, missing the word
+"consecutive"... on several readings. This omission makes the problem much
+easier, so I memoized factorials and binomial coefficients, and threw together
+a straightforward implementation.
+
+Of course, it blew all the tests.
+
+At about half an hour to the end of the contest I realized my mistake and
+feverishly threw together a hack to handle the actual problem as stated. While
+it, to my great surprise, seemed to work just fine correctness-wise, it wasn't
+fast enough to beat all of the test cases. This being at about ten minutes to
+the finish, I decided to call it a day and take home my 60 pts for this one.
+
