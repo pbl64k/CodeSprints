@@ -1,3 +1,11 @@
 My submissions for various CodeSprints held by interviewstreet.com.
 
 Individual contest directories contain detailed READMEs.
+
+IMPORTANT: I most emphatically do not approve of many coding practices and
+style quirks exhibited therein. Coding contests imply severe time pressure,
+which leads, at least in my case, to favouring in-time, on-spec, ugly as hell
+approach to implementation.
+
+Under more normal circumstances I always try to remember that code is written
+for other people's consumption first and foremost.
