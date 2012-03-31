@@ -1,0 +1,104 @@
+http://codeninja.interviewstreet.com/
+
+These are my submissions for Amazon CodeNinja (Mar 31, 2012).
+
+I solved four problems out of five, scored a total of 605 points and was
+ranked 11th out of 610+ participants.
+
+This was my best showing at interviewstreet's contests to date, slightly
+marred by the fact that I finished just short of perfect (literally one test
+case out of them all), and that the problems were noticeably easier than is
+usual for CodeSprint contests. Still it was good fun and an immensely
+satisfying experience.
+
+ROTATE
+
+Rotate looked like an obvious "starter" problem of the set, despite being
+worth 100 pts over XML String's 75.
+
+There's literally no trick to this one, as it boils down to careful
+implementation of two conversions: x, y to "circle" and position and vice
+versa.
+
+I got it right on my first submission around one hour into the contest.
+
+More than two thirds of all participants got this one right, which is another
+indicator this contest was easier than bog standard CodeSprints.
+
+MAGIC MACHINES
+
+This problem looks intimidating, bearing outward resemblance to some of the
+other of interviewstreet's jawbreakingly hard grammar/FSM-based problems. If
+you analyze the grammar, however, it turns out that it has a trivial
+structure:
+
+<blue> ::= AB | <blue> A
+<green> ::= B <blue>
+<red> ::= <blue> <green>
+
+The resulting production is aba*baba*
+
+Counting the pieces of paper used on top of that ain't much of a challenge
+either.
+
+I implemented the solution in Haskell, but made an idiotic mistake forgetting
+that a parse may have a remainder. My solution blew some of the tests due to
+this, and I never realized what the problem was during the contest.
+
+Being pragmatic, I just reimplemented the same solution in PHP, and since I
+included the anchors to the beginning and the end of the string in my regex,
+this one worked just fine.
+
+TRANSMISSION
+
+This 200 pts whopper wasn't much of challenge either. Once again, the
+combinatorial explosion looked intimidating, and I wasn't at all sure the
+obvious DP approach (reducing the problem to keeping O(n^2) large-ish sets of
+intermediate results) would be sufficient to get through it in reasonable
+time. To my great surprise, it was, and I would say that the highest rated
+problem of the contest was actually the second easiest (after Magic Machines,
+which becomes absolutely trivial after a simple analysis).
+
+I was done with this one just before the 2:30 hours into the contest mark,
+which left me with an hour and a half to go and two problems to handle. I kept
+climbing the ranks steadily ever since my first submission, and at this point
+I was a bit bedazzled, as I expected to try about half the problems available
+during the contest (that being about my standard performance level for
+CodeSprints).
+
+XML STRING
+
+I kinda dread problems like this one in contests, as they're normally
+specified in less than formal fashion, making it hard to feel confident about
+the correctness of one's solution to them.
+
+Despite that, it was a pushover. I did not feel confident about my solution's
+correctness, but I felt the fundamental reasoning was sound, given the fact
+that the tree structure is extremely rigid. The solution consists of a chain
+of expectations given the structure together with a definition as to how
+failed parses should be handled. The branch dealing with the next tag being
+lower in the structure while we're expecting a closing tag is key to the
+solution.
+
+I still was a bit surprised when my solution passed all the tests on first
+attempt.
+
+XML STRUCTURE
+
+At this point I felt extremely stressed: I had a little less than an hour of
+coding time left, and just one problem to go, so I felt I had a real shot at
+scoring a home run.
+
+The problem felt even fuzzier than the last one, and between that and the
+mounting pressure I'm afraid my solution was random in the sense that I never
+really analyzed the problem, just hacked together something that kinda sorta
+could've worked. It didn't - not really - and despite the fact that my first
+attempt score 80 out of 100 points (passing 4 out of 5 tests), and that I
+continued hacking literally to the last minute, I never got that last one.
+I think much of that was due to the fact that I haven't thought deeply about
+the structure of the problem, as submission stats do not seem to indicate
+it being all that hard.
+
+Oh well. Still a very decent showing, and I might do better next time (yeah,
+fat chance of that happening).
+
