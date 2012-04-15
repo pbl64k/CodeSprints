@@ -27,9 +27,9 @@ for all i in {0, ... floor(N / 4) - 1},
 EXCHANGE4 2i + 1, 2i + 2, N - 2i - 1, N - 2i
 
 There is no such obvious algorithm for N in {2, 3} (mod 4), but it's not
-obvious there isn't one either. I mulled over this with pen & paper for a few
-minutes, but analysing invariant-preserving permutations isn't exactly my
-strongest suit. I couldn't prove there wasn't an algo for {2, 3}, but the
+obvious there are none at all either. I mulled over this with pen & paper for
+a few minutes, but analysing invariant-preserving permutations isn't exactly
+my strongest suit. I couldn't prove there wasn't an algo for {2, 3}, but the
 hypothesis looked plausible, and it seemed totally worth it to give it a shot,
 as the solution is five lines of Haskell... four of those for dealing with the
 test environment.
@@ -67,7 +67,7 @@ Now this one looked a little more exciting, and was probably the toughest algo
 problem of this contest.
 
 I didn't find it particularly challenging however, as I immediately thought of
-a key idea of reversing time, as it were: it seemed much easier to anylise
+a key idea of reversing time, as it were: it seemed much easier to analyse
 what's happening to the graph structure when we add edges rather that remove
 them, and the system is obviously isotropic with regard to t.
 
@@ -118,7 +118,121 @@ the obvious. The algorithm runs in O(n) time and O(1) space, duh.
 A minor complication is that we're always looking for a minimum first, but
 that's hardly a problem.
 
+
+
+Now this was just an hour and a half into the five-hour contest. I was briefly
+in the first place, sharing it with a bunch of other folks who solved the same
+problems even faster than I did. Soon afterwards people started submitting
+attempts for the last problem, and I never regained the lead.
+
+Anyhow, my point is that I think this situation is a bit pathological, and the
+organizers would do well to bring the algo difficulty curve back up a bit. In
+any case, given that there were still three and a half hours to the finish
+line and nothing else left to do, I started looking at...
+
 OUTRIGHT DATA CLEANING
 
-(to be cont.)
+I read through it in the first minutes of the contest - more like tl;dr, as
+the data looked weird and the output weirder still, not to mention the sheer
+size of the problem statement compared to the other problems.
+
+Now I came back to it, and my initial impression on reading this carefully was
+that I struck a gold vein.
+
+I'm currently tinkering with NLP a good deal thanks to being enrolled in
+coursera's online course in it, and I even have a Naive Bayes classifier of my
+own lying around. Now when you have a Bayes classifier everything looks like
+a training corpus... so I started bolting it onto the task at hand without
+much further thought.
+
+Well, the results were extremely unimpressive, which should've been obvious
+right from the start: the test corpus consists of just 50 small documents,
+that are not very easy to tokenize well to boot. And that corpus covers a
+large bunch of tags and categories, many of them represented by just a single
+entry in the corpus. Clearly this is not enough for a straightforward ML
+approach, as there just isn't enough sample data.
+
+At this point I scrapped Bayes and spent the next few minutes deliberating...
+I was strongly tempted to call it a day (it appears that many of the folks who
+solved all of the algo problems did just that), as it seemed I would have to
+write a truckload of arbitrary hand-crafted rules to get anywhere - at least
+I couldn't think of any other viable approach.
+
+Nevertheless, I decided to give it a shot.
+
+Now I want to say a few words about the tests.
+
+First of all the test corpus seems like it's been crafted by hand rather than
+machine-produced. Some of the identical entries in the input produce different
+results in the output, and the assignment of tags seems to be completely
+arbitrary - starting with the fact that some companies have a tag with the
+company name, and some don't, that the company name tags are arbitrarily
+related to the output in parsed company name, and to the point that industry
+tags seem to have been distributed by shotgun principle. It is beyond my
+comprehension why some companies qualify as 'Software', others as 'Software
+Service', and others still as neither. Same with 'Technology', and it's even
+worse for 'Books' and 'Training'.
+
+Categories? Well, you have one entry per each of 'Supplies' and 'Office
+Supplies'... neither gives much insight into determining this for live data.
+Most categories in the problem statement are not even represented in the
+sample data.
+
+Sanitized company names, once again, bear an arbitrary relationship to the
+input.
+
+And finally, the grading system itself. It seems to be a per-line true/false
+system, which is just about the most inadequate approach to validating ML one
+could think of. 'Sofa BV'? You get full points for it, and none for 'Sofa Bv'.
+Tags? The system expects to see 'Credit Card, Fee'. You get full points for
+it. You get none for any of 'Credit Card', 'Fee, Credit Card', 'Credit Card,
+Fee, Payment'.
+
+And let me remind you that the output is matched against data that is produced
+either by hand or by very crappy software. So the whole problem is not about
+deducing information from the data set, but about reproducing (unseen)
+idiosyncrasies of someone else's mess.
+
+Anyhow, I quickly realized that it was about just that and approached the
+problem correspondingly. There were some general rules for dealing with stuff
+like phone numbers in the data and some other apparent patterns, but most of
+it was special cases.
+
+I spent a lot of time trying to match the exact output of the sample test
+case, and got there eventually, scoring about 28 or 30 points out of 100.
+Afterwards I concentrated on trying to come up with simple heuristics to
+produce something plausible on the unseen data. I might've squeezed out a
+point or two there, but generally speaking it was all in vain.
+
+At about an hour to the end of the contest I had 30 points and ranked 9th.
+
+The one "breakthrough" that scored me extra fifteen points and catapulted me
+into the top 3 was so silly, that... Well, I just noticed that my solution
+would leave the tags empty altogether unless it could match against a known
+pattern. I looked at the sample data and guessed that 'Software' seemed to be
+a relatively common tag. So I changed my code to default to that in case of
+no pattern match.
+
+Yes, that was worth half the points I got for matching the test output.
+
+Note that I made several attempts at assigning this same tag intelligently,
+looking for something software-related in the input data. All of those were
+completely fruitless.
+
+All in all, problems like this one would be a welcome departure for
+CodeSprint. But in this particular case execution was poor at best. I
+understand the problem was deliberately designed to be hard and 'real
+life-like', but I feel it wasn't very successful at that. Real life has
+problems that include both matching someone's arbitrary silliness and
+extracting information from a pile of garbage. The latter can be pretty
+hard - and exciting. The former, just hard.
+
+
+
+I didn't make much progress in the last hour of the contest, and one of the
+participants eventually pushed me down to the fourth spot which I held onto
+till the very end.
+
+Despite any complaints, this was still a very exciting and satisfactory
+contest, and my best performance to date doesn't hurt either of course.
 
