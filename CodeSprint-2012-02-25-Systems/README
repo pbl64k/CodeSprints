@@ -39,7 +39,7 @@ The rest of the transformation yielding the solution is trivial:
 
 [[3, 1, 2, 0], [1, 0], [0], [0]] -> [6, 1, 0, 0] -> 7
 
-I think I spent more time writing a mildly elegant explode that implementing
+I think I spent more time writing a mildly elegant explode than implementing
 the solution as such. In any case, this was over in something like half an
 hour, I believe.
 
@@ -152,7 +152,7 @@ things that weren't clarified in the problem statement:
    with strtolower() before strcmp(). Either they're wrong, or they've been
    quietly "fixing" the test cases in the middle of the contest.
 
-3. Uniqueness. Apperently, vendor names are unique, but it's never been stated
+3. Uniqueness. Apparently, vendor names are unique, but it's never been stated
    clearly in the problem text, and I spent quarter an hour implementing a
    very ugly uniqid() kludge to cover myself against this.
 

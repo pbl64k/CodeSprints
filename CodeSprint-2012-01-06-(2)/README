@@ -20,10 +20,17 @@ limit. I tinkered with it some on Day 2, but my changes were of cosmetic
 nature, and failed to affect the performance perceptibly. Unfortunately, I
 still have no idea how to solve this problem correctly.
 
+(Update: apparently the solution boils down to constructing NFA -> DFA ->
+matrix representation of DFA, then performing some heavy linear algebra mojo
+which yields the result by some obscure theorem. I'll have to keep this in
+mind.)
+
 COIN TOSSES
 
 An easy one for an Eulerite, but it requires arbitrary-precision integers, so
 I only succeeded after I rewrote in Haskell.
+
+(Update: there is a simple analytical solution, but hey, DP works too.)
 
 PICKING CARDS
 
@@ -49,6 +56,9 @@ an easy one and I needed a break from Subsequence Weighting. I'm ashamed to
 admit I'm not very fond of heuristic optimization, nor am I very good at it.
 My extremely naive implementation scored a mere 7.4 points, and I didn't fancy
 pouring much more time into it.
+
+(Update: a fellow contestant shared an insight that this is equivalent to
+Travelling Salesman, same ideas apply.)
 
 FRAUD PREVENTION
 
@@ -77,6 +87,9 @@ QUORA NEARBY
 
 This one needs a healthy dose of k-d trees, but I'd prefer Polygon if I went
 that way.
+
+(Update: once again, a fellow contestant told me brute-force worked for this
+one. Duh.)
 
 POLYGON
 

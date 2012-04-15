@@ -39,10 +39,10 @@ the one with the highest a{i}, and mark it as being the "contender" in the
 Proceeding from there with successively lower a{j}, we try to find an
 intersection with a previously processed function that would be inside its
 "contender" range. All functions on the left are then discarded (as they're
-always below f{j}), and the function we've found is modified, so the the left
-limit of its contender range equals intersection point. f{j} is added to the
-front of the contender list (deque<> in practice, but that is unnecessary) as
-[0, intersection] contender.
+always below f{j}), and the function we've found is modified, so that the left
+limit of its contender range equals the intersection point. f{j} is added to
+the front of the contender list (deque<> in practice, but that is unnecessary)
+as [0, intersection] contender.
 
 Once all functions are processed, we need to count the total number of them in
 the contender list.
@@ -66,6 +66,10 @@ algorithm, but haven't made much progress.
 
 Neither did anyone else, as this problem remained the only one unsolved in
 this contest.
+
+(Update: This might be solvable by MitM plus keeping track of known paths
+associated with the edges involved. I won't go into further detail, as this
+problem is currently live on interviewstreet.com)
 
 GROUPING PEOPLE
 

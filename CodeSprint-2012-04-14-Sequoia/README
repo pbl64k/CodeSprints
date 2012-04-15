@@ -3,4 +3,122 @@ http://sequoia.interviewstreet.com/
 These are my submissions for CodeSprint Sequoia (Apr 14, 2012).
 
 I solved four problems out of five, scored a total of 445 points and was
-ranked 4th out of 410+ participants.
+ranked 4th out of 400+ participants.
+
+Once again, a very good result for me. And once again, the problems were easy
+by CodeSprint standards, but with a twist. It wasn't hard to find solutions
+for the four algo problems, but I usually have at least a sketch of a proof of
+correctness in my head when I submit a solution. That wasn't the case for
+three of these four problems. Finally, the fifth problem was fuzzily defined,
+with a very noisy real world data set, and a tiny training set.
+
+Out of 400-some contestants, no less than forty solved all four algo problems,
+around 60 solved three of those, and about 170 solved at least two. No one
+solved the RL problem completely.
+
+HELP JOHNNY
+
+Once again, this looked like an obvious starter problem of the set, even
+though the other three algo problems didn't look too forbidding either.
+
+Now the algorithm for N in {0, 1} (mod 4) is obvious:
+
+for all i in {0, ... floor(N / 4) - 1},
+EXCHANGE4 2i + 1, 2i + 2, N - 2i - 1, N - 2i
+
+There is no such obvious algorithm for N in {2, 3} (mod 4), but it's not
+obvious there isn't one either. I mulled over this with pen & paper for a few
+minutes, but analysing invariant-preserving permutations isn't exactly my
+strongest suit. I couldn't prove there wasn't an algo for {2, 3}, but the
+hypothesis looked plausible, and it seemed totally worth it to give it a shot,
+as the solution is five lines of Haskell... four of those for dealing with the
+test environment.
+
+Turns out, my intuition was right. I do not know how interesting (or hard)
+the underlying math problem is, but in context of a coding contest it was
+trivial.
+
+PUNCH
+
+Punch looked a bit trickier. Once again, I cannot formally prove the
+correctness of my algo, but there are several obvious insights:
+
+1. In 12 situation we do not want to punch 2 before 1, as it would be
+   sub-optimal. Generalizing that, it's probably worth it punching
+   low-durability bags first.
+
+2. It's obvious we can punch 0x0 at any point without affecting the rest of
+   the situation, so no reason not to punch them out first. Once again,
+   we generalize that it's better to punch out 0xy (where 0 stands for either
+   a destroyed bag, or for the boundary of the training salle) before dealing
+   with other punching bags.
+
+My solution simply uses those two conjectures to pick targets iteratively. At
+each step, it always prefers 1s to 2s and 2s to 3s. Among targets of the same
+value it always chooses the target with the lowest "cost" (where cost is
+defined as the number of adjacent non-0 bags).
+
+Apparently, this is entirely sufficient to choose optimum ordering in O(n^2),
+which is just fine given that n <= 100.
+
+FIRST K EDGES
+
+Now this one looked a little more exciting, and was probably the toughest algo
+problem of this contest.
+
+I didn't find it particularly challenging however, as I immediately thought of
+a key idea of reversing time, as it were: it seemed much easier to anylise
+what's happening to the graph structure when we add edges rather that remove
+them, and the system is obviously isotropic with regard to t.
+
+Restated like that, the problem is as follows:
+
+We're given a pathological graph V, {}, which obviously consists of exactly
+|V| connected components.
+
+Now we start iteratively adding edges to it (in reverse order compared to what
+is given to us). At each step we analyse what's going on:
+
+1. If both the head and the tail of an edge are in the same component, the
+   structure of the graph remains unchanged, and the number of components
+   remains the same.
+
+2. Otherwise, total number of connected components is reduced by one. At this
+   point we need to update node <-> component mapping, merging the two
+   components the new edge connects. This can be somewhat costly (O(|V|)), but
+   remains bearable.
+
+This is precisely the algorithm that I implemented. My initial implementation
+in PHP blew the last three tests by running out of memory (probably at least
+in part because I wasn't cleaning up defunct components). At this point I
+could've just added that, but decided to reimplement in C++ instead.
+
+For some inexplicable reason I decided to keep my components in set<>s instead
+of vector<>s, so my initial attempt in C++ blew the last three tests as well -
+by running out of time. I quickly came to senses, however, and after yanking
+out the sets the whole thing worked like a charm.
+
+I had an immediate extra optimization up my sleeve (moving the smaller
+component instead of always moving the second one), but never needed it.
+
+There might be further optimizations with regard to component operations, but
+I haven't really thought about that as the straightforward approach worked
+just fine.
+
+ALTERNATING SEQUENCE
+
+Ah, more subsequences. I'm very fond of asking to find Kadane's algo as a
+screening problem for software developers, but these are getting a bit old :-)
+
+Once again, I couldn't readily prove we're just looking for local minima and
+maxima, even though it seemed really obvious. I scribbled in my notebook for
+a few minutes trying to prove it, but then just gave up and implemented
+the obvious. The algorithm runs in O(n) time and O(1) space, duh.
+
+A minor complication is that we're always looking for a minimum first, but
+that's hardly a problem.
+
+OUTRIGHT DATA CLEANING
+
+(to be cont.)
+
