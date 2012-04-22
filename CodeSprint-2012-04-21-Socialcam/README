@@ -1,0 +1,85 @@
+http://socialcam.interviewstreet.com/
+
+These are my submissions for CodeSprint Socialcam (Apr 21, 2012).
+
+I solved all five problems and finished first out of 220+ contestants. Split
+honours with several fellow coders, but I was the first to get there. :-)
+
+Once again, problems were fairly easy, and participation was low. Still, it
+feels damn good. :-)
+
+TREE DESIGN
+
+Just about the only challenging part was figuring out the formulae for all
+the parts of the final construction from test outputs.
+
+The number of layers in a given trapezium is n + 3.
+
+The topmost layer of a trapezium has 2 * f(n) + 1 stars, where
+f(n) = floor(n ^ 2 / 2) (this is the average of two consecutive triangle
+numbers, as it happens).
+
+Figuring out the maximum width of the tree from there (which is needed for
+proper formatting) is trivial.
+
+The only remaining detail is that the number of pipes in the trunk is always
+the smallest odd number greater or equal to N.
+
+ADDITIVE PRIMES
+
+Ouch. I hate number theory problems. And I was facing a dilemma. Either I
+could do this in C++, writing all the standard stuff needed here as I go, or I
+could reach into my number theory/combinatorics/useful stuff lib that I have
+from the time a couple years back when I was solving Project Euler's problems.
+In Haskell. Double ouch.
+
+I love Haskell, but getting decent performance out of it is a dark art way
+beyond my meagre understanding.
+
+After much deliberation I did go the Haskell way. Efficient sieve (O'Neill)
+was the only thing I really needed, as digit sums are bound to be small for
+prime numbers below the given bound. Performance is still far from impressive,
+but it was enough to get my solution accepted.
+
+SCHEDULER
+
+Once again, a dilemma. I sketched a decent algo almost immediately, and I was
+pretty certain I could make it blazingly fast in C++. But I would have to deal
+with file I/O, which I last used in C++ years ago, and persist my data
+structures by hand.
+
+Or I could use PHP, which only has one data structure out of the box, that
+tries to be everything to everyone and fails at that miserably more often than
+not. But I would have serialize().
+
+Being the big chicken that I am, I went the PHP way, hoping at least to hammer
+the kinks out of a prototype before rewriting in C++. Surprisingly, the rather
+dumb implementation that I ended up with successfully passed all tests. The
+test data must have been far from pathological.
+
+TIC-TAC-TOE
+
+This is a pretty straightforward DP problem. Apart from having no sensible
+mechanism for memoization out of the box, Haskell is really rather nice for
+game analysis, and as I already reached into my Eulerian toolbox, there was no
+reason not to reuse memoization helpers I had there. The position is a ternary
+number of course, and the total number of positions is a very modest 3^9 (with
+search tree being 9!). It still takes time for my implementation to analyse
+the entire game, but from there the answers to successive queries are
+effectively instanteous.
+
+On solving Tic-Tac-Toe I jumped to #1, sharing it with several other folks,
+and I still had 2+ hours to tackle the real-world problem of the set.
+
+VIDEO FILTERS
+
+Well, on one hand, it was a nice departure from the usual stuff, and I got a
+few larfs from seeing my code actually transforming images into all sorts of
+weird/crazy stuff. On the other hand, the only trouble I had with this problem
+lied in my rusty C++ file I/O, and taking some time to realize that most of
+the crazy stuff I saw was due to using signed chars at first. Once I had that
+a-ha moment, I was done in a couple more minutes.
+
+My submission was accepted at about 3:40 into the contest, so I even had time
+to finish with the writeup before the end of the contest :-)
+
