@@ -12,14 +12,15 @@ for other people's consumption first and foremost.
 
 PERFORMANCE SUMMARY
 
-                RANK  PRTCP   TPERC%   SLVD  SCOR
-                =================================
-CS 2             140   1800     7.8%   5/15   232
-CS Systems        30    380     7.9%   2/ 5    88
-CS Quora         114    210   ~75.0%   0/ 5    30
-CS Startups/IN   110    220   ~65.0%   1/ 4   100
-CS Adobe/IN       39    700     6.1%   2/ 5   260
-CN Amazon/IN      11    610     1.8%   4/ 5   605
-CS Sequoia         4    400     1.0%   4/ 5   445
-CS Socialcam       1    230     3.9%   5/ 5   500
+                         RANK  PRTCP    PERC%   SLVD  SCOR
+                         =================================
+CS 2                      140   1800    92.2%   5/15   232
+CS Systems                 30    380    92.1%   2/ 5    88
+CS Quora                  114    210   ~25.0%   0/ 5    30
+CS Startups/IN            110    220   ~35.0%   1/ 4   100
+CS Adobe/IN                39    700    93.9%   2/ 5   260
+CN Amazon/IN               11    610    98.2%   4/ 5   605
+CS Sequoia                  4    400    99.0%   4/ 5   445
+CS Socialcam                1    230    96.1%   5/ 5   500
+CS Extreme Startups/CA     74    280    72.5%   1/ 4   115
 
