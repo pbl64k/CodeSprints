@@ -8,7 +8,122 @@ I solved just one problem out of four, scored 115 points, and was ranked
 
 A rather poor performance this time. I made a bunch of strategic errors, and
 frankly, felt straight out dumb throughout the contest. I blame six-day
-working week before the holidays, but it was a sucky showing anyway.
+working week before the holidays, but it was a sucky showing from me anyway.
 
-(my remarks on problems to be posted later)
+On the other hand, I'm very happy with the way interviewstreet brought the
+difficulty curve back up where it belongs.
+
+FIND BATTLE
+
+I was very excited after reading the problem statement, as I've been waiting
+for an excuse to code up a k-d tree of my own for quite a while now.
+
+Ironically, this was the only problem of the contest I haven't even touched,
+which goes to show just how screwed up my overall strategy was. Oh well, I
+guess there's a decent chance something like this will crop up again some time
+soon.
+
+JOHNNY'S TOYS
+
+Shames me to admit it, but I haven't ever coded up a heap of my own. (The
+Haskell PQ implementation I used in Project Euler and in one of the recent
+CodeSprints is a) canned, b) quite different compared to how you'd do that in
+C++.) Moreover, until recently I wasn't even aware as to how to do that
+properly.
+
+To elaborate a little, it's obvious we always want to combine the smallest
+components first, and heap of course is an excellent match for that. As a
+result, to me it looked like the easiest problem of the set, so I started off
+with it.
+
+It took me a full hour to get it done. My initial submission calculated the
+total effort incorrectly, but worse than that, I had a terminally stupid bug
+in my extract-min. Indices for the children of a given node were calculated as
+follows:
+
+l = lchild(i)
+r = lchild(r)
+
+*facepalm*
+
+Once again, I blame this on feeling very tired, but the worst part is that it
+took me half an hour to track this bug down.
+
+Nevertheless, eventually I did get there, and it was my only accepted
+submission in this contest.
+
+MONEY GAMBLING
+
+I have no idea what possessed me to even try this one. Once again, this is
+indicative of how messed up my strategy was.
+
+I suck at math. I suck at probability theory and I suck at calculus. I suck at
+pretty much everything except for elementary algebra and basic discrete math.
+
+It's fairly obvious that to solve this you need three things:
+
+1. Figure out the recurrence relationship for the probabilities involved.
+2. Express expected values as infinite series from there.
+3. Figure out a closed formula or a good approximation thereof.
+
+I was absolutely certain I could handle step one, and just as certain I'd be
+totally lost beyond that.
+
+Despite that, I decided that DP would alleviate some of the problems, and
+tried just that.
+
+Recurrence is simple enough. (I'm omitting the bases cases which should be
+obvious.)
+
+1. The probability that the game has ended by turn n is:
+
+    Pr_0(n) = Pr_0(n - 1) + Pr(n, k)
+
+2. Where Pr is the probability that the current state ends in i heads, defined
+   as:
+
+    Pr(n, 0) = (1 - Pr_0(n - 1)) * (1 - p)
+    Pr(n, i) = Pr(n - 1, i - 1) * p
+
+Needless to say, the DP approach doesn't work here at all. (Consider p = 0.6,
+k = 20.) For one thing, the terminal condition is non-trivial, and is
+completely bonkers in my implementations.
+
+After my initial attempt in PHP blew up on all test cases except for the first
+one, I really should've just moved on. Instead, I thought I'd reimplement the
+same in C++ (I think this is something of a mindset problem, Oh I know!.. I'll
+just reimplement it in C++, being my standard MO). Of course, that didn't help
+at all, and I wasted another half an hour on that.
+
+At roughly 2:15 into the contest I realized I'm totally screwing up my game,
+and finally decided to tackle another easy problem to get closer to the top.
+
+INSECT TRIO
+
+Now this is particularly shameful. This is supposedly on par with Johnny's
+Toys difficulty-wise, judging by submission stats. And yet I totally blew it.
+
+I swear I spent some ten minutes scribbling in my notebook before starting to
+code, and yet that didn't help at all, as the algorithm I implemented was a
+brain-dead greedy approach. That doesn't work, naturally, as it produces 3 for
+abcc, while the correct answer is 1.
+
+I haven't made much progress from there. I figured out some
+invariant-preserving transformations (replacing 2n + i, i in {1, 2} letters
+with just i letters and somesuch), but despite spending some forty minutes on
+trying to wrap my mind around the entire algo for optimum reduction, I never
+really got there. I was scribbling some regexen in PHP and toying with deque<>
+in C++ throughout but never reached the point where I'd have something
+potentially workable to submit.
+
+At about quarter an hour to the end of the contest I gave up and went back to,
+ironically, Coursera Automata lectures.
+
+
+
+Anyway, I'm pretty unhappy with my results, and even more so with the fact
+that I wasted a lot of time on the two rather unexciting problems instead of
+attempting the one I really wanted to try my hand at. Still, nice contest. And
+I really hope they hold another one next weekend, when I'm going to be in a
+MUCH better shape (and won't have such a lame excuse for the SUCK :-)
 
