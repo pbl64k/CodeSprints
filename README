@@ -12,7 +12,7 @@ for other people's consumption first and foremost.
 
 PERFORMANCE SUMMARY
 
-                         RANK  PRTCP    PERC%   SLVD  SCOR
+                         RANK ~PRTCP    PERC%   SLVD  SCOR
                          =================================
 CS 2                      140   1800    92.2%   5/15   232
 CS Systems                 30    380    92.1%   2/ 5    88
@@ -23,6 +23,7 @@ CN Amazon/IN               11    610    98.2%   4/ 5   605
 CS Sequoia                  4    400    99.0%   4/ 5   445
 CS Socialcam                1    230    96.1%   5/ 5   500
 CS Extreme Startups/CA     74    280    72.5%   1/ 4   115
+CS TwitchTv                27    290    89.4%   3/ 5   310
 
 NOTE: Ranks on leaderboards seem to fluctuate a bit after the end of a given
 contest, presumably due to some contestants being DQ'd, or submissions being
