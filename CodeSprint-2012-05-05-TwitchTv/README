@@ -5,3 +5,101 @@ These are my submissions for CodeSprint TwitchTv (May 5, 2012).
 I solved three problems out of five, scored 310 points, and was ranked 27th
 out of 290+ contestants.
 
+I got off to a very bad start, but recovered a little towards the end of the
+contest. Just a little bit short of being in the top 10%, which is what I
+consider an adequate performance in CodeSprints.
+
+Somewhat bland problems this time, and judging by the number of people with
+perfect scores, not the best difficulty curve either.
+
+MATCHING
+
+Gosh, I hate number theory. Still, this looked like this set's starter
+problem, so I decided to give it a shot.
+
+A quick test in Haskell confirmed what I already suspected, that this boils
+down to computing the ubiquitous (and hateful) Catalan numbers. From there it
+was a symphony of blunders.
+
+I implemented modular arithmetics in Haskell and just tried to compute the
+results using a closed formula. Of course, division is non-trivial, so the
+whole thing blew up spectacularly.
+
+Trying to come up with a quick fix, I actually attempted to calculate the
+numbers as such then mod them, which is silly given that I'd need to wrangle
+with stuff like 2e5! to do that.
+
+Next stop was trying to use the simple recursive formula modulo M in C++. That
+kinda sorta works, but you need O(n) operations to compute C_n given C_0 to
+C_n-1, which means the solution blows all the hardest tests by running out of
+time.
+
+Finally I realized I just need to use the direct relationship between C_n and
+C_n-1, using multiplicative inverses to do division.
+
+Unfortunately, while the plan was sound, it took me unreasonably long time to
+get it all working. I struggled with extended Euclidean algo long enough in
+itself (really, I should compile a Spells of Power library already to keep
+stuff like that there), and then I spent more time than I'm comfortable
+admitting figuring out what the hell is going on with my unsigneds.
+
+In the end, it took me almost an hour and a half to solve what should've been
+a fifteen minutes problem.
+
+CENTRE OF MASS
+
+Honestly, I don't know what's wrong with me. This is a trivial problem, and I
+had a solution in five minutes... but then I spent more than an hour debugging
+it (turns out I completely screwed up weight indices while sorting, which,
+unfortunately, wasn't obvious on the test cases I was using initially).
+
+Swappable weights form connected components. Finding them all is trivial. I
+used DFS at first, then changed it to BFS as I was suspecting I was running
+into the recursion limit (didn't seem to have been the case). Within the
+bounds of every connected component optimization is trivial as well - just
+sorting by weight is enough.
+
+That's all there is to it really.
+
+
+
+I was done with this problem at about 2:45 into the contest, and since I
+didn't have any brilliant insights into any of the remaining problems, I was
+pretty unhappy with myself. Solving just two problems would have been enough
+to put me around 45th place, which is a bit below the performance level I'd be
+satisfied with.
+
+SUPER BOMB
+
+I'll admit up front I had no idea how to solve this properly, but since I seem
+to have delevoped an unhealthy fondness of greedy algorithms recently, I
+decided to try just that.
+
+The first couple of tries weren't particularly successful (or smart), but in
+the end I just started picking cells with the lowest cost (the number of other
+open cells in the same row or column) at each iteration, and that worked just
+fine. I had a couple of bugs in how I kept track of costs, and the
+implementation is a mess, but I got a submission through just minutes before
+the four hours mark, when the contest was scheduled to end.
+
+Honestly, I have no idea how to prove this works - or even whether this *does*
+work in a general case. But oh well.
+
+ARRANGEMENT
+
+The contest was actually extended by half an hour, apparently due to some
+problems with the graders. So I spent the extra time nibbling on this one. The
+algo isn't worth mentioning, as it's terminally dumb, and it's easy to
+contruct a counter-example for it. Computing the SCCs could have helped reduce
+the size of the problem, allowing for wider search, but judging from the hints
+published after the contest was over, that was a dead-end anyway, and the
+problem boiled down to juggling some elementary graph theory.
+
+In the end, I got 10pts off this one, more by luck than anything else.
+
+
+
+All in all, a rather disappointing performance, although not quite as bad as
+it looked like mid-contest. Still, close enough to my averages, and a definite
+improvement over the last week's fiasco.
+
