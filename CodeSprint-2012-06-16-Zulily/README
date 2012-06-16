@@ -1,0 +1,84 @@
+http://zulily.interviewstreet.com/
+
+These are my submissions for CodeSprint Zulily (June 16, 2012).
+
+I solved one problem out of four, scored 87 points, and was ranked 3rd out of
+190+ contestants.
+
+MAXIMUM SUM OF PRODUCT
+
+This was the problem worth the most points of them all... and the easiest one,
+too. It's pretty obvious that you need to start with N, and add successive
+numbers alternating left and right, e.g.:
+
+2, 4, 5, 3, 1
+
+This was precisely the algorithm I implemented initially. Unfortunately,
+Haskell lists are not very good at handling stuff like that, and I blew most
+of the test cases by running out of time, so I had three options to consider:
+
+1. Use a more efficient data strcture.
+2. Reduce to a recursive function without using data structures (this was
+   probably the easiest one to get right).
+3. Deduce a closed formule.
+
+Being a hardened old Eulerite I chose the fourth option: a dark power called
+OEIS, which gave me a closed formula right away. I'm pretty sure I could've
+deduced it, but why bother?
+
+Anyway, map (sop . msopl) [1 .. 20] gave me enough information to find the
+closed formula, and of course it worked just fine.
+
+COMPACT TREES
+
+This one's tricky. The formula is recursive, but far from trivial. The total
+for any given node is the sum of totals for children, plus the number of
+combinations of child trees given the information on sub-trees reaching the
+root node. I won't go into much detail - it's all in the code. The tricky part
+is in the "pants" nodes, i.e.:
+
+ 0
+/ \
+1  2
+
+Where both 1 and 2 represent arbitrary sub-trees. The combinatorial explosion
+is pretty intimidating as far as keeping track of these cases is concerned.
+
+My final implementation blew one of the test cases either by time or by space
+(depending on the data type used), but I didn't feel like trying to overcome
+this issue, as I got most of the points for this problem. Basic prudence meant
+I'd be better off working on a different problem, so I switched to...
+
+DOCUMENT SEARCH
+
+I briefly considered using a suffix tree, but the implementation I had at hand
+(from one of interviewstreet ongoings) was both incomplete and, er,
+cryptically implemented, so I decided to try and brute force instead.
+
+My initial implementation in C++ was in, all senses, brain-dead, and would run
+out of space on all but the most trivial test cases (it almost brought my
+coding VM to its knees on some tests). I quickly realized I should get rid of
+duplicates, and, somewhat counter-intuitively, decided to reimplement the
+optimized algo in PHP instead of C++ (this was less than an hour before the
+end of the contest, so I wanted to save on manual memory management/data
+structure juggling). The end result *almost* worked, blowing three test cases
+out of ten by "Wrong Anwser". I never figured out what the problem was, as the
+algo worked fine on open tests, and I couldn't find any bugs by inspecting by
+eye.
+
+In any case, solving seven out of ten was enough to propel me to the third
+place, and at less than ten minutes to the end of the contest I decided to
+call it quits.
+
+LINE CROSSING
+
+This problem looked like it called for some form of a k-d tree/R* tree (at
+least I couldn't think of any better way of tackling it), but I've never had
+time to actually try and implement anything. Oh well. Me and k-d trees. Never
+works out, it doesn't.
+
+
+
+All in all, a good result for me, but the problems were a little
+disappointing, as some of the past contests included RW problems that were a
+lot more fun to tackle.
