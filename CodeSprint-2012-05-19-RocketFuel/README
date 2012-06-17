@@ -1,0 +1,69 @@
+http://rocketfuel.interviewstreet.com/
+
+These are my submissions for CodeSprint RocketFuel (May 19, 2012).
+
+I hadn't solved any problems completely, scored a mere 60 points, and was
+ranked 44th out of 110+ contestants.
+
+This was a tough one, which I unreservedly approve of, even though the
+problems were a good deal beyond my ability.
+
+ROULETTE PREDICTOR
+
+I actually started with this problem, despite it being the toughest one
+judging by its stated worth in points. The reason for that was that simple
+algo is just a few lines of Haskell, and I felt it was totally worth it giving
+it a shot. I was right in a sense, too, as I scored some points here rather
+easily.
+
+The initial algo was extremely dumb, and simply kept the 2^i * 3^j candidates
+in a Set, comparing the numbers directly. This failed all the harder test
+cases, despite the fact that the Set should never grow too large, as it's easy
+to show 2^i+1 * 3^j should only be added to the priority queue if j = 0. In
+all other cases we take one candidate out of the set and replace it with a
+single new one, so the size of the PQ grows as binary log of n.
+
+My later attempt leveraged this explicitly, kept candidates as (i, j) pairs,
+used explicit expmod instead of applying modulo post factum, and compared in
+log-space (not necessarily a good idea, as a tiny error in log_2 3 can
+accumulate quickly for sufficiently large j, quickly enough to throw off
+comparisons, perhaps). Despite all that it actually fared worse than the dumb
+version of the same algo.
+
+I've never figured out the reason for that, nor do I have any leads on solving
+this problem correctly.
+
+OPTIMAL TERRAFORMING
+
+This one had me completely stumped.
+
+I glared at it stupidly long enough, and spent an inordinate amount of time
+with pen and paper trying to figure out *any* algo for solving it. Still, I
+haven't come up with anything but a very brute-force search of the path space,
+and even then my initial implementation was plain wrong.
+
+I was able to track down the logic bug thanks to the abundance of open test
+cases, and after resolving it (by making the cumbersome data structure I used
+even more cumbersome) I kinda felt I had a correct algo on my hands, and hoped
+it would be able to go through all of the tests unless it ran out of time.
+
+Turned out, the implementation still blew one of the easier tests, giving a
+wrong answer.
+
+I was unable to find any logic errors in my approach, and the faulty test case
+involved a matrix on the order of 50x50, so I couldn't possibly debug by hand.
+After trying some minor tweaks, I was running out of time, and decided to
+spend some more effort on Roulette Predictor (without any success there
+either).
+
+ZERO-G PINBALL
+
+I might've made a mistake by not trying this one. There are certain
+complications, but this might've been the most straightforward problem of this
+contest. Of course, not having attempted it for real I might be missing some
+fine details that are not readily apparent by skimming over the statement.
+
+Anyway, it would appear that this boils down to calculating the worth of
+different trajectories on the board (the number of which should be linear in
+size of the board), then combining the two most profitable ones.
+

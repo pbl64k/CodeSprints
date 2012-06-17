@@ -72,7 +72,7 @@ totally lost beyond that.
 Despite that, I decided that DP would alleviate some of the problems, and
 tried just that.
 
-Recurrence is simple enough. (I'm omitting the bases cases which should be
+Recurrence is simple enough. (I'm omitting the base cases which should be
 obvious.)
 
 1. The probability that the game has ended by turn n is:

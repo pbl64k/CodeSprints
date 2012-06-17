@@ -1,0 +1,50 @@
+http://elastic.interviewstreet.com/
+
+These are my submissions for CodeSprint Elastic (June 2, 2012).
+
+I solved two problems out of four, scored 105 points, and was ranked 8th out
+of 130+ contestants.
+
+I'm rather unhappy with my own performance. The end result looks decent
+enough, but while I solved the two easy problems, I failed to make a dent in
+the two actually challenging ones.
+
+DUPLICATE DETECTION
+
+This is absolutely trivial, as is boils down to building a graph and detecting
+connected components once again. My PHP solution didn't pass (I blame lame
+data structures), but rewriting in C++ was hardly a problem, even though I
+just hate working with string data in C++.
+
+COLLAPSING FEEDS
+
+Duh. No trick to this one either. Straightforward approach works just fine,
+simply implement according to the spec.
+
+COVERING CITIES REVISITED
+
+I missed the contest that had the original problem (I think it was
+inconveniently early in the morning), although I'm not at all sure that would
+give me any competitive advantage.
+
+Anyway, nothing clever occurred to me, so I implemented the algorithm as
+described, keeping track of coverage counts. This is pretty inefficient, and
+the code is quite a mess. I expected this would be enough to get through at
+least a few simpler test cases, but in practice I only passed the very first
+one, timing out on most of the rest.
+
+There might be an unfound bug in the implementation, as some simpler cases
+reported "Wrong Answer". I was unable to track it down in the time given.
+
+For insight on this problem you might want to take a look at the editorial
+published by the organizers after the contest.
+
+GRADES
+
+Once again, the editorial has explanations on this. During the contest I went
+as far as figuring out this boils down to inequalities dividing the problem
+space in regions, but I'm thoroughly unfamiliar with either efficient
+geometric algos that would help with this or with linear programming which I
+guessed could be applicable. As a result I preferred to concentrate on other
+problems, and never attempted this one.
+
