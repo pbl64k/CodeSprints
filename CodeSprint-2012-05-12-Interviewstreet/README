@@ -1,0 +1,95 @@
+http://interviewstreet.interviewstreet.com/
+
+These are my submissions for CodeSprint Interviewstreet (May 12, 2012).
+
+I solved one problem out of three, scored 1098 points, and was ranked 7th out
+of 300+ contestants.
+
+Note that leaderboard rankings are not entirely reflective of actual
+performance for this contest. One of the problems involved trying to break
+interviewstreet's grader, and as such wasn't graded automatically. Moreover,
+the two automatically graded problems were 1000 and 100 points worth while
+hardly being an order of magnitude different in terms of difficulty.
+
+COMPLEXITY
+
+It's pretty obvious this problem is undecidable in a general case, so I
+decided to assume that a) computation terminates b) complexity can be
+approximated by taking derivatives. As soon as sufficiently many differences
+turn to zero, we have an approximate degree of polynomial complexity for the
+given algo. So the problem boils down to:
+
+1. Parsing the input.
+2. Evaluating the expression given.
+3. Performing the evaluation for some [1 .. n_max]
+4. Calculating differences until we reach a constant.
+
+Parsec is priceless in these circumstances. However, my initial implementation
+blew several tests, and as I was naturally predisposed to considering my
+complexity evaluation to be borken, I'd be stuck there...
+
+Fortunately, I had a stroke of blind luck. Interviewstreet's grader briefly
+broke and provided feedback more extensive than just the "Wrong Answer". The
+error messages I saw clearly indicated the problem was in the parser rather
+than in complexity evaluation.
+
+Turns out, the language specification was incomplete. (On a side note, I think
+this is a very bad approach to designing problems like this one - writing a
+correct parser handling unseen data shouldn't be THE hurdle.) I don't remember
+all the details, but I believe the changes needed to solve the problem were:
+
+1. Optional terminator for the last statement in a block (so it's a separator,
+   really).
+2. Parenthesised conditionals.
+3. Non-block statements in control flow operators.
+
+After implementing these parser changes, the rather naive differentiation algo
+was sufficient to pass all the tests.
+
+RANKING PLAYERS
+
+Never got this one right, despite trying a ton of stuff.
+
+Interviewstreet extended the deadline by a whole week. I was briefly in the
+lead after one of my early attempts, but lost it soon afterwards. Three
+participants solved the problem during the weekend initially scheduled for the
+contest. No one did afterwards.
+
+The grading seemed a bit off, as most of sensible algorithms yielded scores
+within 990/1000, and *all* sensible algos got at least 950 out of 1000.
+
+Anyway, I tried a ton of options, including:
+
+1. Various sorting algos, using best-of-n for comparison, including heuristics
+   for determining the "winner" without actual games (probabilistic
+   transitivity).
+2. Round-robin and swiss variations, using similar heuristics.
+3. ELO estimations, once again using various heuristics.
+
+Despite spending several days of work on the problem, I never broke the 999
+barrier, and don't really know what the proper solution is supposed to be.
+
+My best attempt was a round-robin tournament with extremely aggresive
+heuristics for determining the winner without playing actual games (the
+parameters were horribly overfit by submitting multiple solution with
+different constants).
+
+On a side note, this sort of ruined my life for the week after the deadline
+extension. I think it's a bit cruel to run week-long marathons without
+up-front warning.
+
+HACK THE CHECKER
+
+It's pretty obvious that as long as you have a solution for a given problem
+(and that is trivial given the "problem" statement for this one), you can get
+back at least a bit of information back per submission. I couldn't be bothered
+to try this approach, however, not to mention any more advanced methods, as
+I'm hardly an IS expert, and can't say I have much interest in stuff like
+that.
+
+
+
+All in all, this was a very fun and, er, different contest. I didn't
+appreciate it trying to destroy my life by being extended to a whole week,
+though.
+
