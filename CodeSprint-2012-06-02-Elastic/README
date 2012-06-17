@@ -43,7 +43,7 @@ GRADES
 
 Once again, the editorial has explanations on this. During the contest I went
 as far as figuring out this boils down to inequalities dividing the problem
-space in regions, but I'm thoroughly unfamiliar with either efficient
+space into regions, but I'm thoroughly unfamiliar with either efficient
 geometric algos that would help with this or with linear programming which I
 guessed could be applicable. As a result I preferred to concentrate on other
 problems, and never attempted this one.
