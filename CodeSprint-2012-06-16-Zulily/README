@@ -20,42 +20,50 @@ of the test cases by running out of time, so I had three options to consider:
 1. Use a more efficient data strcture.
 2. Reduce to a recursive function without using data structures (this was
    probably the easiest one to get right).
-3. Deduce a closed formule.
+3. Deduce a closed formula.
 
 Being a hardened old Eulerite I chose the fourth option: a dark power called
-OEIS, which gave me a closed formula right away. I'm pretty sure I could've
-deduced it, but why bother?
+OEIS, which gave me a closed formula right away.
 
-Anyway, map (sop . msopl) [1 .. 20] gave me enough information to find the
-closed formula, and of course it worked just fine.
+Upd: After sleeping on this, I don't know whether I would've found a closed
+formula, but a simple recurrence relationship should be entirely sufficient
+for calculating this within the time limit, given the problem parameters.
+The only things you need to keep track of are n, sum to date, two ends of the
+list and current position (left or right).
 
 COMPACT TREES
 
 This one's tricky. The formula is recursive, but far from trivial. The total
 for any given node is the sum of totals for children, plus the number of
-combinations of child trees given the information on sub-trees reaching the
-root node. I won't go into much detail - it's all in the code. The tricky part
-is in the "pants" nodes, i.e.:
+combinations of sub-trees given the information on sub-trees reaching the root
+node. I won't go into much detail - it's all in the code. The tricky part is
+in the "pants" nodes, i.e.:
 
- 0
-/ \
-1  2
+  0
+ / \
+1   2
 
 Where both 1 and 2 represent arbitrary sub-trees. The combinatorial explosion
 is pretty intimidating as far as keeping track of these cases is concerned.
 
+The problem is a little harder than it should be as the tree is not given in
+form of directed edges from "root", so you need to pick one node arbitrarily
+and transform adjacencies for convenient traversal. This isn't apparent from
+the test cases in the problem text either, but at least the cases used for
+"Compile & Test" do make this clear.
+
 My final implementation blew one of the test cases either by time or by space
 (depending on the data type used), but I didn't feel like trying to overcome
 this issue, as I got most of the points for this problem. Basic prudence meant
-I'd be better off working on a different problem, so I switched to...
+I'd be better off working on a different one, so I switched to...
 
 DOCUMENT SEARCH
 
 I briefly considered using a suffix tree, but the implementation I had at hand
 (from one of interviewstreet ongoings) was both incomplete and, er,
-cryptically implemented, so I decided to try and brute force instead.
+cryptically coded, so I decided to try and brute force instead.
 
-My initial implementation in C++ was in, all senses, brain-dead, and would run
+My initial implementation in C++ was, in all senses, brain-dead, and would run
 out of space on all but the most trivial test cases (it almost brought my
 coding VM to its knees on some tests). I quickly realized I should get rid of
 duplicates, and, somewhat counter-intuitively, decided to reimplement the
@@ -81,4 +89,8 @@ works out, it doesn't.
 
 All in all, a good result for me, but the problems were a little
 disappointing, as some of the past contests included RW problems that were a
-lot more fun to tackle.
+lot more fun to tackle. On a side note, for once I showed a very good result
+mostly due to sound strategy. I never got sidetracked by problems I wouldn't
+know how to solve, and always went where the points were instead of trying to
+squeeze the last few points out of that mysteriously failing test case.
+

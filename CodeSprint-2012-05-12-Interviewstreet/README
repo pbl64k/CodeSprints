@@ -41,10 +41,14 @@ all the details, but I believe the changes needed to solve the problem were:
 1. Optional terminator for the last statement in a block (so it's a separator,
    really).
 2. Parenthesised conditionals.
-3. Non-block statements in control flow operators.
+3. Arbitrary variable names.
 
 After implementing these parser changes, the rather naive differentiation algo
 was sufficient to pass all the tests.
+
+I should note that my parser is actually broken, as all the operators are
+treated as right-associative. Fortunately, that didn't matter as test cases
+seem to have used explicit parentheses in all expressions to disambiguate.
 
 RANKING PLAYERS
 
@@ -69,9 +73,9 @@ Anyway, I tried a ton of options, including:
 Despite spending several days of work on the problem, I never broke the 999
 barrier, and don't really know what the proper solution is supposed to be.
 
-My best attempt was a round-robin tournament with extremely aggresive
+My best attempt was a round-robin tournament with extremely aggressive
 heuristics for determining the winner without playing actual games (the
-parameters were horribly overfit by submitting multiple solution with
+parameters were horribly overfit by submitting multiple solutions with
 different constants).
 
 On a side note, this sort of ruined my life for the week after the deadline
@@ -82,10 +86,9 @@ HACK THE CHECKER
 
 It's pretty obvious that as long as you have a solution for a given problem
 (and that is trivial given the "problem" statement for this one), you can get
-back at least a bit of information back per submission. I couldn't be bothered
-to try this approach, however, not to mention any more advanced methods, as
-I'm hardly an IS expert, and can't say I have much interest in stuff like
-that.
+back at least a bit of information per submission. I couldn't be bothered to
+try this approach, however, not to mention any more advanced methods, as I'm
+hardly an IS expert, and can't say I have much interest in stuff like that.
 
 
 
