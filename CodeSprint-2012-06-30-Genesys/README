@@ -1,0 +1,62 @@
+http://genesys.interviewstreet.com/
+
+These are my submissions for CodeSprint Genesys (June 30, 2012).
+
+I solved one problem out of three, scored 99 points, and was ranked 6th out of
+37 contestants.
+
+I have to say this was just about the most poorly organized CodeSprint to
+date. It was scheduled to start at 11:30am PST. Roughly an hour and a half
+before the start it was already listing 2:30pm PST as a starting time. That
+was way too late for me, so I decided not to participate, but at 11:30am I
+dropped by just to check whether there were any news... and found out the
+contest's been underway for half an hour already! Just two of the three
+problems were published, too. The last one appeared barely half an hour before
+the end, and the contest was extended accordingly.
+
+Moreover, my PHP submission for Cactus behaved very weirdly (no feedback
+whatsoever from the grader), and when I asked the interviewstreet folks about
+it, it turned out they broke their platform a little at some point, so they
+couldn't really support PHP this time.
+
+Still, it was a resonably fun one (if short-ish).
+
+ELECTRICITY GRID
+
+I don't believe I've ever tinkered with MST algorithms, so I had to read about
+Prim's and Kruskal's on the go. It was pretty obvious that Kruskal's produces
+spanning forests of decreasing size at every step, and I implemented similar
+algorithms in the past, so it was a no-brainer.
+
+In an unusual decision for me, I used std::multimap<> initially, but that
+solution blew one of the test cases by time, so I rewrote using map of lists.
+That one worked perfectly.
+
+I don't know if it's something wrong with me or with std::multimap<>, but
+every time I try using that (or multiset) I get screwed over one way or
+another.
+
+CACTUS
+
+I don't really know what the correct algo is, mine was just a greedy one
+trying iteratively evenly split assignments on vertices with the maximum
+number of unassigned edges.
+
+As I mentioned before, grader 'sploded on good ole PHP, so I know nothing on
+how this algo does with anything but the most trivial tests.
+
+While I was waiting for interviewstreet guys to investigate, the last problem
+got published, so I switched to that and never went back to Cactus.
+
+CONSISTENT HASH
+
+Well, you don't invent your own hash functions unless you're very smart, or
+very dumb. Me, I'm neither. So after fooling around with simple XOR a little,
+I went looking for known hash algos. Jenkins looked very promising, and
+performed fairly well in practice. I also tried FNV, but it wasn't quite as
+good. I spent a few more minutes considering other hash functions, but soon
+called it quits about ten minutes to the deadline.
+
+The sixth place I ended up with can be explained by two factors, really: low
+participation and lucking into Jenkins.
+
