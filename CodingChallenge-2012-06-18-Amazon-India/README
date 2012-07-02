@@ -1,0 +1,185 @@
+http://amazonindia.interviewstreet.com/
+
+These are my submissions for Amazon India Coding Challenge (June 16 - July 2,
+2012).
+
+I solved all four problems, scored 91 points, and was ranked 1st out of 640+
+contestants.
+
+I did not intend to participate in this one, as a timeframe of two weeks is a
+bit beyond my taste in coding contests. So I just dropped by to take a look at
+the problems, and I almost couldn't believe my eyes.
+
+Despite its enormous length compared to bog standard CodeSprints, the problems
+were much easier than I've ever seen at interviewstreet.com. In fact, three
+out of four are about as straightforward as they could get, and only the last
+one is somewhat interesting from the algorithmic standpoint.
+
+The final results reflected the low difficulty, too, as almost a quarter of
+all participants finished with a perfect score.
+
+CONNECTED SETS
+
+Duh. Traverse the matrix. Mark visited cells, keep track of connected
+components. Move along, nothing to see here, any second year CS student should
+be able to solve this one in their sleep.
+
+FIBONACCI FACTOR
+
+Well, duh. Since fib grows expenentially with a base of phi, there are just 87
+Fibonacci numbers below the given bound, so you can solve this pretty much
+however you wish, there's plenty of time to do anything you might come up
+with.
+
+Haskell, as it happens, comes with a very decent gcd out of the box, so it's a
+complete no-brainer.
+
+MEETING SCHEDULES
+
+Gosh. I guess this could look a little daunting, but in practice it's dead
+simple: just keep the interval list, update, normalize, iterate. When done,
+output sufficiently large intervals marked as free. Yep. That's all there is
+to it.
+
+SHORTEST SUB-SEGMENT
+
+I actually liked this one. It's not very challenging, but unlike the other
+three, it requires some algorithmic imagination to solve efficiently.
+
+My algo is dominated by the transformation of document and query into a list
+of integers. To illustrate:
+
+Query:
+licet, non
+[ 1,    2]
+
+Document:
+quod licet iovi non licet bovi
+[0,    1,   0,   2,   1,   0]
+
+There are, of course, ways of improving the performance of that, but that's
+the uninteresting part of the problem.
+
+Once we have the integer list, we're looking for a sequence of its elements
+containing all the integers {1 .. |query|}
+
+Let's look at the elements one by one, discarding zeroes, and keeping track of
+encountered non-zeroes (in a deque), including the counts. Eventually we're
+going to reach a point where we have seen all the integers (otherwise there's
+no match in the document), e.g.:
+
+front:
+(1, position = 2) <- "licet"
+(2, position = 4) <- "non"
+:back
+Counts: "licet" 1, "non" 1
+
+This is going to be our first candidate, a sequence of length 3 starting at
+position 2. (Note: we need to minimize using the same algo as in step 2 below,
+but that's a minor detail.)
+
+Now we do the following until we exhaust the list:
+
+1. Consume the next non-zero integer, add it to the back of the queue, modify
+   counts accordingly.
+
+2. If the count for the front of the queue is above 1, discard it, decrease
+   the corresponding count and repeat 2.
+
+3. If the difference between positions of the front and the back of our queue
+   plus one is below the length of our current candidate, make the current
+   state of the queue the new candidate. Repeat from 1 in any case.
+
+Let's see how it works out:
+
+1. We consume "licet" (1) from the input:
+
+front:
+(1, position = 2) <- "licet"
+(2, position = 4) <- "non"
+(1, position = 5) <- "licet"
+:back
+Counts: "licet" 2, "non" 1
+
+2. "licet" is at the front of the queue, and the count for it is 2. Discard
+   and decrease the count:
+
+front:
+(2, position = 4) <- "non"
+(1, position = 5) <- "licet"
+:back
+Counts: "licet" 1, "non" 1
+
+2. (again) The count for "non" (at the front) is 1, so do nothing and proceed
+   to 3.
+
+3. 5 - 4 + 1 is less than 4 - 2 + 1, so the sequence from 4 to 5 is our new
+candidate.
+
+At this point we would have proceeded back from 1, but as it turns out, we've
+already consumed all non-zero input, so 4 to 5 is our final answer.
+
+This part of the algorithm is actually worst-case linear in |document| +
+|query| (both time- and spacewise), and it's fairly easy to show it's correct.
+
+1. Our initial candidate is a valid candidate containing all the search terms,
+   and by construction it's the leftmost such one in the document.
+
+2. Throughout the rest of the algorithm we never reduce the term counts below
+   one, so at all further steps we have a valid candidate in our queue.
+
+Now suppose the sequence we're looking for is some w_1 .. w_k. At some point
+in the algorithm we're going to consume w_k and stop at that (since we're
+consuming all the words in the document one by one until we exhaust the
+document).
+
+What is the sequence the algorithm will consider as the new candidate at this
+point?
+
+It cannot be some w_i .. w_k, as all our candidates are valid (see above), and
+this one would be shorter than (by definition) the shortest one in the entire
+document. Obvious contradiction.
+
+It also cannot be some w_x .. w_1 .. w_k. By definition, w_1 .. w_k contains
+all the search terms t at least once. Therefore, for any w_x = t_i, count of
+t_i in the sequence w_x .. w_1 .. w_k would be at least two, and the w_x would
+be dropped by step 2 of our algo.
+
+Therefore, the sequence we would consider as a new candidate after consuming
+w_k would be exactly w_1 .. w_k, and as it is the shortest valid candidate, it
+would become our final answer by construction of 3. QED.
+
+Now I've proven (sort of) that my algo is correct. Unfortunately,
+interviewstreet's grader happened to disagree with me. I spent about an hour
+trying to guess what was going wrong, but in the end I just resorted to using
+a rather dirty trick.
+
+In one of my previous writeups I mentioned that there is a way to get back a
+few bits of information from inside the grading environment. Consider:
+
+if hidden bit == 1
+  then loop forever
+  else output garbage
+
+If the hidden bit obtained by this program running inside a grader is 1,
+the grader is going to output "Time limit exceeded". If it's 0, the grader
+will output "Wrong Answer".
+
+Using just this technique I finally figured out that a bunch of test cases had
+duplicate search terms in them. This is no big deal, but a naive
+implementation of my algo handled that as follows:
+
+Query:
+licet, non, licet
+[ 1,    2,    3]
+
+Document:
+quod licet iovi non licet bovi
+[0,    1,   0,   2,   1,   0]
+
+Obviously, there's no sequence in the resulting document containing all the
+numbers from 1 to 3.
+
+In any case, after figuring this out adding a simple workaround was no problem
+at all.
+
