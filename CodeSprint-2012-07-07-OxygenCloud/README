@@ -1,0 +1,34 @@
+http://oxygencloud.interviewstreet.com/
+
+These are my submissions for CodeSprint OxygenCloud (July 7, 2012).
+
+I didn't solve any problems this time, scored just 8 points and was ranked
+53th out of 64 participants.
+
+This one had rather tough problems, and as is usually the case with such
+contests my performance was very poor.
+
+ONE PERSON GAME
+
+This looked suspiciously NP to me, so I gave up on it after thinking about it
+for just a few minutes. I'm not sure what the expected solution was, and
+unless I'm much mistaken, no one's found it during the contest (although some
+folks seem to have submitted correct solutions after the deadline).
+
+DATA CENTER
+
+This one looked more approachable, despite the fact that I'm not really into
+combinatorics. In any case, I spent a lot of time figuring out how to
+correctly calculate the result, but in the end it was all in vain. I did reach
+a correct solution (recursive, expressed through binomial coefficients and
+modular exponentiation), but that was way too slow to make a good dent in the
+test cases. Having made so little progress and with just half an hour
+remaining I decided against trying to figure out a better solution.
+
+I'm not really sure what would be a good plan for solving this, but some sort
+of a closed formula must be in order, otherwise it would be hard to approach
+the performance needed to hack through the final test cases.
+
+The contest was extended by a full hour in the end, but I was unaware of that,
+having quit before the announcement.
+

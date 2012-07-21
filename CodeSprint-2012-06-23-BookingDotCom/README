@@ -1,0 +1,38 @@
+http://booking.interviewstreet.com/
+
+This is my submission for CodeSprint Booking.com (June 23, 2012).
+
+There was just one problem this time, and no online grading. The results were
+never published online, but I got contacted by Booking.com folks, who told me
+I finished in the top three. Yay, I guess.
+
+SUGGESTING THE RIGHT HOTEL
+
+Unusually, this wasn't an algorithm problem, but rather a machine learning
+one. Ironically, I finished my Coursera ML homework on collaborative filtering
+literally five minutes before the start of the contest. So I had a very good
+idea on what was the right approach... and it didn't help one bit.
+
+Reproducing the entire support code involved in building a collaborative
+filtering system would be a big enough problem in itself, and I would have
+just two hours to do it. That didn't stop me from trying, but when at about
+half an hour into the contest I realized I already spent significant time on
+just getting the data into Octave in a reasonable enough form, I abandoned my
+plans. (I should note that the problem doesn't map to collaborative filtering
+exactly, but I thought I'd cross that bridge when I'd get to it.)
+
+The back-up plan was simple. I picked four features that seemed important:
+city, minimum price, stars and guest reviews. City got a very special
+treatment, since I assumed that if someone's visiting a certain city often,
+they would probably be interested in hotels there.
+
+The rest of the features were normalized. Min price was tricky, as it was
+given in different currency units for different hotels... without specifying
+those units. I simply reset to zero anything that looked weird.
+
+After that I computed mean point in feature space for every customer, and
+looked for nearest neighbours in the cities on their "favoured" list. That's
+all.
+
+I barely managed to finish it all before the end of the contest.
+

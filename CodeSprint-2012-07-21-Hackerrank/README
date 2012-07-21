@@ -1,0 +1,19 @@
+http://hackerrank.interviewstreet.com/
+
+This is my submission for CodeSprint Hackerrank (July 21, 2012).
+
+I solved the only problem in this contest, scored 10000 points, and was ranked
+1st out of 123 contestants.
+
+N KUEEN
+
+The choice of the problem was a bit unfortunate, and the example 10x10
+solution made it worse. If you think a little about it, it's pretty obvious
+that it scales to any N congruent 1 modulo 3. This was pretty much my final
+solution, which is once again just a few lines of Haskell. The scoring was
+capped at 10000, so going to N = 100000 didn't help at all. I spent about
+half an hour out of the 1h 30m allotted due to going down some blind alleys.
+
+It seems that quite a few participants figured out the above relationship as
+well, as once again a couple dozen people shared the top spot.
+

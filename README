@@ -12,26 +12,27 @@ for other people's consumption first and foremost.
 
 PERFORMANCE SUMMARY
 
-                         RANK ~PRTCP    PERC%   SLVD  SCOR
-                         =================================
-CS 2                      140   1800    92.2%   5/15   232
-CS Systems                 30    380    92.1%   2/ 5    88
-CS Quora                  114    210   ~25.0%   0/ 5    30
-CS Startups/IN            110    220   ~35.0%   1/ 4   100
-CS Adobe/IN                39    700    93.9%   2/ 5   260
-CN Amazon/IN               11    610    98.2%   4/ 5   605
-CS Sequoia                  4    400    99.0%   4/ 5   445
-CS Socialcam                1    230    96.1%   5/ 5   500
-CS Extreme Startups/CA     74    280    72.5%   1/ 4   115
-CS TwitchTv                27    290    89.4%   3/ 5   310
-CS Interviewstreet          7    300    97.3%   1/ 3  1098
-CS Rocket Fuel             44    110    60.0%   0/ 3    60
-CS Elastic                  8    130    90.7%   2/ 4   105
-CS Zulily                   3    190    97.8%   1/ 4    87
-CC Amazon/IN                1    640    79.3%   4/ 4    91
-CS Booking.com          top 3     34    91.1%   1/ 1   ---
-CS Genesys                  6     37    83.7%   1/ 3    99
-CS OxygenCloud             53     64   ~15.0%   0/ 2     8
+                         RANK ~PRTCP    PERC%   SLVD    SCOR
+                         ===================================
+CS 2                      140   1800    92.2%   5/15     232
+CS Systems                 30    380    92.1%   2/ 5      88
+CS Quora                  114    210   ~25.0%   0/ 5      30
+CS Startups/IN            110    220   ~35.0%   1/ 4     100
+CS Adobe/IN                39    700    93.9%   2/ 5     260
+CN Amazon/IN               11    610    98.2%   4/ 5     605
+CS Sequoia                  4    400    99.0%   4/ 5     445
+CS Socialcam                1    230    96.1%   5/ 5     500
+CS Extreme Startups/CA     74    280    72.5%   1/ 4     115
+CS TwitchTv                27    290    89.4%   3/ 5     310
+CS Interviewstreet          7    300    97.3%   1/ 3    1098
+CS Rocket Fuel             44    110    60.0%   0/ 3      60
+CS Elastic                  8    130    90.7%   2/ 4     105
+CS Zulily                   3    190    97.8%   1/ 4      87
+CC Amazon/IN                1    640    79.3%   4/ 4      91
+CS Booking.com          top 3     34    91.1%   1/ 1     ---
+CS Genesys                  6     37    83.7%   1/ 3      99
+CS OxygenCloud             53     64   ~15.0%   0/ 2       8
+CS Hackerrank               1    123    74.7%   1/ 1   10000
 
 NOTE: Ranks on leaderboards seem to fluctuate a bit after the end of a given
 contest, presumably due to some contestants being DQ'd, or submissions being
