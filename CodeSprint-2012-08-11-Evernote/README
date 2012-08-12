@@ -9,6 +9,9 @@ Yet another dreadfully easy contest. No less than 364 people (more than a
 third of all participants) solved all problems. The contest was running for an
 entire day, but it took me about 1h 10m to get through it.
 
+It's worth noting that the language selection was very limited this time.
+What! No Haskell or PHP? The humanity!
+
 TOP FOUR
 
 So trivial I won't go in any detail. Obviously linear time and constant space.
@@ -29,11 +32,20 @@ pretty straightforward as well.
 
 MULTIPLY EXCEPT SELF
 
-It's obvious that if P is the product of all terms, then ith element of the
-output is P / x_i
+It's obvious that if P is the product of all terms, then the ith element of
+the output is P / x_i.
 
-That doesn't account for zero, though, which is why my first submission failed
-with floating point exception.
+I solved all the previous problems in C++, but as I was getting a bit tired of
+it, I decided to do this one in Python for a change, as I'm sufficiently
+comfortable with it.
+
+What do you know, this particular problem did not allow Python, too (although
+all the others did)! The only languages available were C, C++, Java and C#.
+Now I must say I don't quite see the point of it.
+
+Anyway, I rewrote the above algo in C++ after throwing out the initial Python
+implementation. But, of course, it doesn't account for zeroes, which was why
+my first submission failed with floating point exception.
 
 Nonetheless, it's easy even with zeroes. If there is more than one in the
 input, all the output terms should be zeroes (there's always at least one to
