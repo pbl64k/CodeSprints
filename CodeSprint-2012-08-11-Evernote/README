@@ -1,0 +1,46 @@
+http://evernote.interviewstreet.com/
+
+These are my submissions for CodeSprint Evernote (August 11-12, 2012).
+
+I solved all four problems, scored 80 points, and was ranked 1st out of 930+
+contestants.
+
+Yet another dreadfully easy contest. No less than 364 people (more than a
+third of all participants) solved all problems. The contest was running for an
+entire day, but it took me about 1h 10m to get through it.
+
+TOP FOUR
+
+So trivial I won't go in any detail. Obviously linear time and constant space.
+
+FREQUENT TERMS
+
+This is pretty easy as long as you maintain counts in an efficient associative
+data structure. std::map<> works just fine. I used two passes, both
+O(n log n), to make it all simpler. Getting the ordering right is *slightly*
+tricky.
+
+CIRCULAR BUFFER
+
+No big deal either. Vector works just fine. You need to use two pointers into
+the data structure with proper wrapping on increments. Another small issue is
+that you need sane behavior for buffer underflows and overflows, but that's
+pretty straightforward as well.
+
+MULTIPLY EXCEPT SELF
+
+It's obvious that if P is the product of all terms, then ith element of the
+output is P / x_i
+
+That doesn't account for zero, though, which is why my first submission failed
+with floating point exception.
+
+Nonetheless, it's easy even with zeroes. If there is more than one in the
+input, all the output terms should be zeroes (there's always at least one to
+annihilate the product). If there is exactly one zero, its corresponding
+output will be the product of all non-zero terms, while all other output terms
+will be zeroes.
+
+My second submission failed due to a small bug, but a third one worked just
+fine.
+
